@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: ${ENV:dev}
+eureka:
+  server:
+    use-read-only-response-cache: false
+    response-cache-auto-expiration-in-seconds: 10
+    wait-time-in-ms-when-sync-empty: 0
+    enable-self-preservation: false
+
+#    waitTimeInMsWhenSyncEmpty: 0
+#    enableSelfPreservation: false
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+#    registerWithEureka: false
+#    fetchRegistry: false
+#    serviceUrl:
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
